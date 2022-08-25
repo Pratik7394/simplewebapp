@@ -1,5 +1,6 @@
 package com.pratik.springprojects.simplewebapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,25 +15,33 @@ public class Publisher {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String Name;
-	private String AddressLine1;
-	private String City;
-	private String State;
-	private String Zip;
+	private String name;
+	private String addressLine1;
+	private String city;
+	private String state;
+	private String zip;
 
 	@OneToMany
-	@JoinColumn()
-	private Set<Book> books;
+	@JoinColumn(name  = "publisher_id")
+	private Set<Book> books = new HashSet<>();
 
 	public Publisher() {
 	}
 
 	public Publisher(String name, String address_Line1, String city, String state, String zip) {
-		Name = name;
-		AddressLine1 = address_Line1;
-		City = city;
-		State = state;
-		Zip = zip;
+		this.name = name;
+		addressLine1 = address_Line1;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
+
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	public Long getId() {
@@ -44,54 +53,54 @@ public class Publisher {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getAddressLine1() {
-		return AddressLine1;
+		return addressLine1;
 	}
 
 	public void setAddressLine1(String addressLine1) {
-		AddressLine1 = addressLine1;
+		this.addressLine1 = addressLine1;
 	}
 
 	public String getCity() {
-		return City;
+		return city;
 	}
 
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 
 	public String getState() {
-		return State;
+		return state;
 	}
 
 	public void setState(String state) {
-		State = state;
+		this.state = state;
 	}
 
 	public String getZip() {
-		return Zip;
+		return zip;
 	}
 
 	public void setZip(String zip) {
-		Zip = zip;
+		this.zip = zip;
 	}
 
 	@Override
 	public String toString() {
 		return "Publisher{" +
 			"id=" + id +
-			", Name='" + Name + '\'' +
-			", Address_Line1='" + AddressLine1 + '\'' +
-			", City='" + City + '\'' +
-			", State='" + State + '\'' +
-			", Zip='" + Zip + '\'' +
+			", Name='" + name + '\'' +
+			", Address_Line1='" + addressLine1 + '\'' +
+			", City='" + city + '\'' +
+			", State='" + state + '\'' +
+			", Zip='" + zip + '\'' +
 			'}';
 	}
 
